@@ -28,7 +28,9 @@
   --white:#f6f7f4;
   --font-display:'Sora',-apple-system,'Segoe UI',sans-serif;
   --maxw:1180px;
+  --gut:22px;
 }
+@media (min-width:640px){ :root{ --gut:40px; } }
 
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -40,9 +42,9 @@ body{
   font-weight:400;
   line-height:1.5;
   -webkit-font-smoothing:antialiased;
-  padding:0 24px;
+  padding:0;
+  overflow-x:hidden;
 }
-@media (min-width:640px){ body{ padding:0 40px; } }
 
 img{max-width:100%;display:block;}
 a{color:inherit;}
@@ -50,7 +52,7 @@ h1,h2,h3,h4{margin:0;text-wrap:balance;font-family:var(--font-display);}
 p{margin:0;}
 button{font-family:inherit;}
 
-.wrap{max-width:var(--maxw);margin:0 auto;position:relative;}
+.wrap{max-width:calc(var(--maxw) + var(--gut) * 2);margin:0 auto;position:relative;padding-left:var(--gut);padding-right:var(--gut);box-sizing:border-box;}
 
 .eyebrow{
   font-family:var(--font-display);
@@ -86,9 +88,9 @@ header{
   border-bottom:1px solid rgba(228,230,228,.08);
 }
 .nav{
-  max-width:var(--maxw);margin:0 auto;
+  max-width:calc(var(--maxw) + var(--gut) * 2);margin:0 auto;box-sizing:border-box;
   display:flex;align-items:center;justify-content:space-between;
-  padding:16px 0;
+  padding:16px var(--gut);
 }
 .brandmark{display:flex;align-items:center;gap:10px;}
 .brandmark img{height:26px;width:auto;}
@@ -118,8 +120,8 @@ header{
 
 /* ---------- sections ---------- */
 section{position:relative;overflow:hidden;}
-.sec-inner{max-width:var(--maxw);margin:0 auto;padding:96px 0;position:relative;z-index:2;}
-@media (max-width:720px){ .sec-inner{padding:64px 0;} }
+.sec-inner{max-width:calc(var(--maxw) + var(--gut) * 2);margin:0 auto;padding:96px var(--gut);position:relative;z-index:2;box-sizing:border-box;}
+@media (max-width:720px){ .sec-inner{padding:64px var(--gut);} }
 
 .dark{background:var(--graphite);color:var(--paper);}
 .deep{background:var(--graphite-deep);color:var(--paper);}
@@ -130,13 +132,10 @@ section{position:relative;overflow:hidden;}
 .light .eyebrow{color:var(--graphite-soft);}
 .lime .eyebrow{color:var(--lime-ink);}
 
-/* faixas decorative svg */
-.faixas-deco{position:absolute;pointer-events:none;z-index:1;opacity:.14;}
-.faixas-deco svg{width:100%;height:100%;display:block;}
-
 /* ---------- hero ---------- */
 .hero{padding-top:56px;}
 .hero .sec-inner{padding-top:64px;padding-bottom:88px;}
+.cta-sec .sec-inner{padding-top:100px;padding-bottom:110px;}
 .hero-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:48px;align-items:center;}
 @media (max-width:900px){ .hero-grid{grid-template-columns:minmax(0,1fr);gap:44px;} }
 .hero-grid > *{min-width:0;}
@@ -244,6 +243,13 @@ section{position:relative;overflow:hidden;}
 @media (max-width:900px){
   .dash-win,.dash-body,.dash-chart,.dash-top{min-width:0;}
   .dash-top{flex-wrap:wrap;}
+  .dash-bar{gap:10px;}
+  .dash-url{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;}
+  .dash-live{flex:none;padding:5px 10px;font-size:10px;}
+}
+@media (max-width:520px){
+  .dash-url{display:none;}
+  .dash-live{margin-left:auto;}
 }
 @media (max-width:640px){
   .dash-fc .l{font-size:11.5px;}
@@ -354,7 +360,7 @@ section{position:relative;overflow:hidden;}
   .case-grid{
     display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;
-    padding-bottom:6px;margin-right:-24px;padding-right:24px;
+    padding-bottom:6px;margin-right:calc(var(--gut) * -1);padding-right:var(--gut);
   }
   .case-grid::-webkit-scrollbar{display:none;}
   .case-grid > .case-card{flex:0 0 74%;scroll-snap-align:start;}
@@ -415,7 +421,7 @@ section{position:relative;overflow:hidden;}
 
 /* ---------- footer ---------- */
 footer{background:var(--graphite-deep);border-top:1px solid rgba(228,230,228,.08);}
-.foot-inner{max-width:var(--maxw);margin:0 auto;padding:36px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.foot-inner{max-width:calc(var(--maxw) + var(--gut) * 2);margin:0 auto;box-sizing:border-box;padding:36px var(--gut);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
 .foot-inner img{height:20px;opacity:.85;}
 .foot-links{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--font-display);font-size:12px;color:var(--stone);}
 .foot-links a{text-decoration:none;}
@@ -1089,154 +1095,6 @@ html:not([data-motion="on"]) .rv{opacity:1;transform:none;}
 </section>
 
 <section class="dark cta-sec" id="diagnostico">
-  <div class="faixas-deco" style="left:-160px;bottom:-100px;width:480px;height:320px;transform:scaleX(-1);"><svg id="Camada_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 2494.22 1538.62">
-  
-  <defs>
-    <style>
-      .fx_st0{
-        fill: #a8a8a8;
-      }
-
-      .fx_st1{
-        fill: #ceff00;
-      }
-    </style>
-  </defs>
-  <polyline class="fx_st1" points="401.33 90.09 2064 90.09 2064 249.38 1526.88 249.38 1436.57 375.87 711.29 375.87 618.23 323.87 401.33 323.87 401.33 90.09"/>
-  <polyline class="fx_st1" points="62.79 42.67 158.83 112.97 158.83 384.6 141.25 414.24 141.25 1333.14 158.83 1358.25 158.83 1413.48 62.79 1464.89 62.79 42.67"/>
-  <polyline class="fx_st1" points="380.9 794.17 470.77 671.4 818.03 671.4 855.94 693.87 2030.68 693.87 2062.78 671.4 2133.39 671.4 2199.11 794.17 380.9 794.17"/>
-  <polyline class="fx_st1" points="225.78 1320.51 1788.41 1320.51 1837.36 1265.18 2324.42 1265.18 2355.54 1292.85 2459.71 1292.85 2459.71 1375.84 225.78 1375.84 225.78 1320.51"/>
-  <g>
-    <circle class="fx_st0" cx="-19.61" cy="1440.78" r=".64"/>
-    <circle class="fx_st0" cx="-7.72" cy="1440.78" r=".64"/>
-    <circle class="fx_st0" cx="4.16" cy="1440.78" r=".64"/>
-    <circle class="fx_st0" cx="16.05" cy="1440.78" r=".64"/>
-    <circle class="fx_st0" cx="-19.61" cy="1447.75" r=".64"/>
-    <circle class="fx_st0" cx="-7.72" cy="1447.75" r=".64"/>
-    <circle class="fx_st0" cx="4.16" cy="1447.75" r=".64"/>
-    <circle class="fx_st0" cx="16.05" cy="1447.75" r=".64"/>
-    <circle class="fx_st0" cx="-19.61" cy="1454.72" r=".64"/>
-    <circle class="fx_st0" cx="-7.72" cy="1454.72" r=".64"/>
-    <circle class="fx_st0" cx="4.16" cy="1454.72" r=".64"/>
-    <circle class="fx_st0" cx="16.05" cy="1454.72" r=".64"/>
-  </g>
-  <g>
-    <g>
-      <circle class="fx_st0" cx="1280.14" cy="320.6" r="1.25"/>
-      <circle class="fx_st0" cx="1303.35" cy="320.6" r="1.25"/>
-      <circle class="fx_st0" cx="1326.55" cy="320.6" r="1.25"/>
-      <circle class="fx_st0" cx="1349.76" cy="320.6" r="1.25"/>
-      <circle class="fx_st0" cx="1372.97" cy="320.6" r="1.25"/>
-      <circle class="fx_st0" cx="1396.18" cy="320.6" r="1.25"/>
-      <circle class="fx_st0" cx="1419.39" cy="320.6" r="1.25"/>
-    </g>
-    <g>
-      <circle class="fx_st0" cx="1280.14" cy="334.22" r="1.25"/>
-      <circle class="fx_st0" cx="1303.35" cy="334.22" r="1.25"/>
-      <circle class="fx_st0" cx="1326.55" cy="334.22" r="1.25"/>
-      <circle class="fx_st0" cx="1349.76" cy="334.22" r="1.25"/>
-      <circle class="fx_st0" cx="1372.97" cy="334.22" r="1.25"/>
-      <circle class="fx_st0" cx="1396.18" cy="334.22" r="1.25"/>
-      <circle class="fx_st0" cx="1419.39" cy="334.22" r="1.25"/>
-    </g>
-    <g>
-      <circle class="fx_st0" cx="1280.14" cy="347.83" r="1.25"/>
-      <circle class="fx_st0" cx="1303.35" cy="347.83" r="1.25"/>
-      <circle class="fx_st0" cx="1326.55" cy="347.83" r="1.25"/>
-      <circle class="fx_st0" cx="1349.76" cy="347.83" r="1.25"/>
-      <circle class="fx_st0" cx="1372.97" cy="347.83" r="1.25"/>
-      <circle class="fx_st0" cx="1396.18" cy="347.83" r="1.25"/>
-      <circle class="fx_st0" cx="1419.39" cy="347.83" r="1.25"/>
-    </g>
-  </g>
-  <g>
-    <g>
-      <circle class="fx_st0" cx="2287.21" cy="1321.76" r="1.25"/>
-      <circle class="fx_st0" cx="2310.42" cy="1321.76" r="1.25"/>
-      <circle class="fx_st0" cx="2333.63" cy="1321.76" r="1.25"/>
-      <circle class="fx_st0" cx="2356.84" cy="1321.76" r="1.25"/>
-      <circle class="fx_st0" cx="2380.05" cy="1321.76" r="1.25"/>
-      <circle class="fx_st0" cx="2403.25" cy="1321.76" r="1.25"/>
-      <circle class="fx_st0" cx="2426.46" cy="1321.76" r="1.25"/>
-    </g>
-    <g>
-      <circle class="fx_st0" cx="2287.21" cy="1335.39" r="1.25"/>
-      <circle class="fx_st0" cx="2310.42" cy="1335.39" r="1.25"/>
-      <circle class="fx_st0" cx="2333.63" cy="1335.39" r="1.25"/>
-      <circle class="fx_st0" cx="2356.84" cy="1335.39" r="1.25"/>
-      <circle class="fx_st0" cx="2380.05" cy="1335.39" r="1.25"/>
-      <circle class="fx_st0" cx="2403.25" cy="1335.39" r="1.25"/>
-      <circle class="fx_st0" cx="2426.46" cy="1335.39" r="1.25"/>
-    </g>
-    <g>
-      <circle class="fx_st0" cx="2287.21" cy="1348.99" r="1.25"/>
-      <circle class="fx_st0" cx="2310.42" cy="1348.99" r="1.25"/>
-      <circle class="fx_st0" cx="2333.63" cy="1348.99" r="1.25"/>
-      <circle class="fx_st0" cx="2356.84" cy="1348.99" r="1.25"/>
-      <circle class="fx_st0" cx="2380.05" cy="1348.99" r="1.25"/>
-      <circle class="fx_st0" cx="2403.25" cy="1348.99" r="1.25"/>
-      <circle class="fx_st0" cx="2426.46" cy="1348.99" r="1.25"/>
-    </g>
-  </g>
-  <g>
-    <g>
-      <circle class="fx_st0" cx="493.83" cy="704.3" r="1.25"/>
-      <circle class="fx_st0" cx="517.04" cy="704.3" r="1.25"/>
-      <circle class="fx_st0" cx="540.25" cy="704.3" r="1.25"/>
-      <circle class="fx_st0" cx="563.46" cy="704.3" r="1.25"/>
-      <circle class="fx_st0" cx="586.67" cy="704.3" r="1.25"/>
-      <circle class="fx_st0" cx="609.88" cy="704.3" r="1.25"/>
-      <circle class="fx_st0" cx="633.08" cy="704.3" r="1.25"/>
-    </g>
-    <g>
-      <circle class="fx_st0" cx="493.83" cy="717.93" r="1.25"/>
-      <circle class="fx_st0" cx="517.04" cy="717.93" r="1.25"/>
-      <circle class="fx_st0" cx="540.25" cy="717.93" r="1.25"/>
-      <circle class="fx_st0" cx="563.46" cy="717.93" r="1.25"/>
-      <circle class="fx_st0" cx="586.67" cy="717.93" r="1.25"/>
-      <circle class="fx_st0" cx="609.88" cy="717.93" r="1.25"/>
-      <circle class="fx_st0" cx="633.08" cy="717.93" r="1.25"/>
-    </g>
-    <g>
-      <circle class="fx_st0" cx="493.83" cy="731.53" r="1.25"/>
-      <circle class="fx_st0" cx="517.04" cy="731.53" r="1.25"/>
-      <circle class="fx_st0" cx="540.25" cy="731.53" r="1.25"/>
-      <circle class="fx_st0" cx="563.46" cy="731.53" r="1.25"/>
-      <circle class="fx_st0" cx="586.67" cy="731.53" r="1.25"/>
-      <circle class="fx_st0" cx="609.88" cy="731.53" r="1.25"/>
-      <circle class="fx_st0" cx="633.08" cy="731.53" r="1.25"/>
-    </g>
-  </g>
-  <g>
-    <g>
-      <circle class="fx_st0" cx="112.06" cy="276.38" r="1.25"/>
-      <circle class="fx_st0" cx="112.06" cy="253.17" r="1.25"/>
-      <circle class="fx_st0" cx="112.06" cy="229.96" r="1.25"/>
-      <circle class="fx_st0" cx="112.06" cy="206.75" r="1.25"/>
-      <circle class="fx_st0" cx="112.06" cy="183.54" r="1.25"/>
-      <circle class="fx_st0" cx="112.06" cy="160.33" r="1.25"/>
-      <circle class="fx_st0" cx="112.06" cy="137.12" r="1.25"/>
-    </g>
-    <g>
-      <circle class="fx_st0" cx="125.69" cy="276.38" r="1.25"/>
-      <circle class="fx_st0" cx="125.69" cy="253.17" r="1.25"/>
-      <circle class="fx_st0" cx="125.69" cy="229.96" r="1.25"/>
-      <circle class="fx_st0" cx="125.69" cy="206.75" r="1.25"/>
-      <circle class="fx_st0" cx="125.69" cy="183.54" r="1.25"/>
-      <circle class="fx_st0" cx="125.69" cy="160.33" r="1.25"/>
-      <circle class="fx_st0" cx="125.69" cy="137.12" r="1.25"/>
-    </g>
-    <g>
-      <circle class="fx_st0" cx="139.29" cy="276.38" r="1.25"/>
-      <circle class="fx_st0" cx="139.29" cy="253.17" r="1.25"/>
-      <circle class="fx_st0" cx="139.29" cy="229.96" r="1.25"/>
-      <circle class="fx_st0" cx="139.29" cy="206.75" r="1.25"/>
-      <circle class="fx_st0" cx="139.29" cy="183.54" r="1.25"/>
-      <circle class="fx_st0" cx="139.29" cy="160.33" r="1.25"/>
-      <circle class="fx_st0" cx="139.29" cy="137.12" r="1.25"/>
-    </g>
-  </g>
-</svg></div>
   <div class="sec-inner">
     <div class="cta-grid">
       <div class="cta-copy">
